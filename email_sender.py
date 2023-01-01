@@ -26,8 +26,6 @@ def send_email(to_addrs: Union[str, Sequence[str]], subject: str, content: str,
 
   msg = EmailMessage()
   msg['Subject'] = subject
-  # me == the sender's email address
-  # family = the list of all recipients' email addresses
   if from_display_name:
     msg['From'] = Address(display_name=from_display_name, addr_spec=from_email)
   else:
@@ -45,7 +43,7 @@ def send_email(to_addrs: Union[str, Sequence[str]], subject: str, content: str,
 def main():
   send_email(
     to_addrs=read_from_file(TEST_EMAIL_FILE_NAME),
-    subject='Test email from Python bot4',
+    subject='Test email from Python bot',
     content='Email test.',
     from_display_name="Ted's Bot",
   )
