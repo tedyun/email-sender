@@ -2,7 +2,7 @@ import argparse
 import smtplib
 from email.headerregistry import Address
 from email.message import EmailMessage
-from typing import Union, Sequence
+from typing import Any, Union, Sequence
 
 
 USERNAME_FILE_NAME = 'username'
@@ -14,27 +14,28 @@ DEFAULT_SUBJECT = 'Test email subject from Python Bot'
 DEFAULT_CONTENT = 'Test email content from Python Bot.'
 DEFAULT_FROM_NAME = "Ted's Bot"
 
-def read_from_file(fpath):
+def read_from_file(fpath: str) -> str:
   with open(fpath, 'rt') as f:
     return f.read().strip()
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='Send args.')
-    parser.add_argument('--to_addr', help='The TO address.', default=read_from_file(TEST_EMAIL_FILE_NAME))
-    parser.add_argument('--subject', help='The subject.', default=DEFAULT_SUBJECT)
-    parser.add_argument('--content', help='The content.', default=DEFAULT_CONTENT)
-    parser.add_argument('--from_name', help='The content.', default=DEFAULT_FROM_NAME)
-    args = parser.parse_args()
-    print('Input args:')
-    for arg in vars(args):
-        print('--{}: {}'.format(arg, getattr(args, arg)))
-    return args
+def parse_args() -> argparse.Namespace:
+  parser = argparse.ArgumentParser(description='Send args.')
+  parser.add_argument('--to_addr', help='The TO address.',
+                      default=read_from_file(TEST_EMAIL_FILE_NAME))
+  parser.add_argument('--subject', help='The subject.', default=DEFAULT_SUBJECT)
+  parser.add_argument('--content', help='The content.', default=DEFAULT_CONTENT)
+  parser.add_argument('--from_name', help='The content.', default=DEFAULT_FROM_NAME)
+  args = parser.parse_args()
+  print('Input args:')
+  for arg in vars(args):
+      print('--{}: {}'.format(arg, getattr(args, arg)))
+  return args
 
 
 def send_email(to_addrs: Union[str, Sequence[str]], subject: str, content: str,
                smtp_url: str = GMAIL_SMTP_URL, smtp_port: int = GMAIL_SMTP_PORT,
-               from_name: str = ''):
+               from_name: str = '') -> None:
   if isinstance(to_addrs, str):
     to_addrs = [to_addrs]
 
