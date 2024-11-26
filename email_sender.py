@@ -20,15 +20,16 @@ def read_from_file(fpath: str) -> str:
 
 
 def parse_args() -> argparse.Namespace:
-  parser = argparse.ArgumentParser(description='Send args.')
-  parser.add_argument('--to', help='The comma-separated list of TO addresses.',
+  parser = argparse.ArgumentParser(description='Email args.')
+  parser.add_argument('--to', help='Comma-separated list of TO addresses.',
                       default=read_from_file(TEST_EMAIL_FILE_NAME), type=str)
-  parser.add_argument('--subject', help='The subject.', default=DEFAULT_SUBJECT)
-  parser.add_argument('--content', help='The content.', default=DEFAULT_CONTENT)
-  parser.add_argument('--from_name', help='The content.', default=DEFAULT_FROM_NAME)
-  parser.add_argument('--cc', help='The comma-separated list of cc addresses.',
+  parser.add_argument('--subject', help='Subject.', default=DEFAULT_SUBJECT)
+  parser.add_argument('--content', help='Content.', default=DEFAULT_CONTENT)
+  parser.add_argument('--from_name', help='Display name of the sender.',
+                      default=DEFAULT_FROM_NAME)
+  parser.add_argument('--cc', help='Comma-separated list of cc addresses.',
                       default='', type=str)
-  parser.add_argument('--bcc', help='The comma-separated list of bcc addresses.',
+  parser.add_argument('--bcc', help='Comma-separated list of bcc addresses.',
                       default='', type=str)
   args = parser.parse_args()
   print('Input args:')
