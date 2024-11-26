@@ -15,7 +15,9 @@ $ python3 email_sender.py \
 Example 2:
 ```
 $ python3 email_sender.py \
-  --to_addrs "email1@domain.com,email2@domain.com" \
+  --to "email1@domain.com,email2@domain.com" \
+  --cc "email3@domain.com,email4@domain.com" \
+  --bcc "email5@domain.com,email6@domain.com" \
   --from_name "Email bot name" \
   --subject "Email subject" \
   --content "Email content."
