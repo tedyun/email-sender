@@ -27,9 +27,9 @@ def parse_args() -> argparse.Namespace:
   parser.add_argument('--content', help='Content.', default=DEFAULT_CONTENT)
   parser.add_argument('--from_name', help='Display name of the sender.',
                       default=DEFAULT_FROM_NAME)
-  parser.add_argument('--cc', help='Comma-separated list of cc addresses.',
+  parser.add_argument('--cc', help='Comma-separated list of CC addresses.',
                       default='', type=str)
-  parser.add_argument('--bcc', help='Comma-separated list of bcc addresses.',
+  parser.add_argument('--bcc', help='Comma-separated list of BCC addresses.',
                       default='', type=str)
   args = parser.parse_args()
   print('Input args:')
